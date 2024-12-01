@@ -1,0 +1,10 @@
+.mat-progress-spinner .mat-progress-spinner-circle {
+  stroke: orange; /* Change the color of the spinner */
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+}

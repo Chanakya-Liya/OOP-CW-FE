@@ -1,0 +1,37 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #1a1a1a; /* Deep dark background */
+    border-bottom: 2px solid rgb(58, 134, 255, 0.95); /* Matches the button theme */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff; /* Bright text for dark background */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.navbar-brand img {
+    margin-right: 10px; /* Spacing between logo and text */
+    border-radius: 50%; /* Circular logo */
+    border: 2px solid #1161ee; /* Matches the button color */
+    padding: 2px;
+    background: white; /* Highlight for logo */
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #ffffff; /* Ensures links are white */
+    transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+    color: rgb(58, 134, 255, 0.95); /* Accent color on hover */
+}
