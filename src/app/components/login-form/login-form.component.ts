@@ -5,10 +5,11 @@ import { ReactiveFormsModule, ValidatorFn, AbstractControl, ValidationErrors } f
 import { loginUser } from '../../models/loginUser.model';
 import { LoginServiceService } from '../../service/login-service.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { NgxSpinner, NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-login-form',
-  imports: [ReactiveFormsModule, FormsModule, NgStyle, NgIf, MatProgressSpinnerModule],
+  imports: [ReactiveFormsModule, FormsModule, NgStyle, NgIf, MatProgressSpinnerModule, NgxSpinnerComponent],
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css'],
 })
@@ -44,7 +45,7 @@ export class LoginFormComponent {
     );
   }
 
-  constructor(private fb: FormBuilder, private loginService: LoginServiceService) {
+  constructor(private fb: FormBuilder, private loginService: LoginServiceService, private spinner: NgxSpinnerService) {
     // Initialize forms
     this.signInForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -63,28 +64,28 @@ export class LoginFormComponent {
     this.isSignIn = isSignInTab;
   }
 
+  showSpinner() {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 2000);
+  }
+
   onSignInSubmit(): void {
     if (this.signInForm.valid) {
+      this.showSpinner(); // Show spinner
       const loginuser: loginUser = {
         email: this.signInForm.value.email,
-        password: this.signInForm.value.password
+        password: this.signInForm.value.password,
       };
-      this.loginService.getLogin( loginuser ).subscribe({
+      this.loginService.getLogin(loginuser).subscribe({
         next: (response) => {
           this.loginService.handleLoginResponse(response);
         },
         error: (error) => {
           console.log('Login failed', error);
           this.incorrect = true;
-          if (this.incorrect) {
-            setTimeout(() => {
-              this.incorrect = false;  
-            }, 4000);  
-          }
         },
-        complete: () => {
-          console.log('Login request completed');
-        }
       });
     } else {
       console.log('Sign In Form is invalid');

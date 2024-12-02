@@ -16,13 +16,24 @@ export class LoginServiceService {
       return this.http.post(this.apiUrl+'/login' , loginUser, {responseType: 'text'});
     }
 
-    handleLoginResponse(response: any): any {
-      if (response === 'Customer') {
-        this.router.navigate(['/customer']);  // Redirect to Customer route
-      } else if (response === 'Vendor') {
-        this.router.navigate(['/vendor']);    // Redirect to Vendor route
+    handleLoginResponse(response: any): void {
+      const responseObj = JSON.parse(response); // Parse the JSON response
+      const role = responseObj.role;
+      const token = responseObj.token;
+    
+      if (role && token) {
+        // Store token in localStorage or sessionStorage
+        localStorage.setItem('authToken', token);
+        localStorage.setItem('userRole', role);
+    
+        // Redirect based on role
+        if (role === 'Customer') {
+          this.router.navigate(['/customer']);
+        } else if (role === 'Vendor') {
+          this.router.navigate(['/vendor']);
+        }
       } else {
-        this.router.navigate(['']);   // Redirect to Invalid route
+        this.router.navigate(['']); // Invalid response, redirect to login
       }
     }
 }

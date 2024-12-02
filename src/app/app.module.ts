@@ -4,7 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgxSpinnerModule } from 'ngx-spinner'; // Import the correct module
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { NgxSpinnerModule } from 'ngx-spinner'; // Import the correct module
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgxSpinnerModule // Add the module to the imports array
+    NgxSpinnerModule,
   ],
   providers: [provideHttpClient()],
   bootstrap: []
