@@ -2,8 +2,7 @@ import { NgIf, NgStyle } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
-import { loginUser } from '../../models/loginUser.model';
-import { registerUser } from '../../models/registerUser.model';
+import { loginUser, registerUser } from '../../models/user.model';
 import { LoginServiceService } from '../../service/login-service.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 

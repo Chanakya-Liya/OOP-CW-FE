@@ -1,6 +1,11 @@
 <nav class="navbar">
-    <a class="navbar-brand">
-      <img src="https://i.postimg.cc/cJZXJt3F/Logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-      EventPass
-    </a>
-  </nav>
+  <a class="navbar-brand">
+    <img src="https://i.postimg.cc/cJZXJt3F/Logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+    EventPass
+  </a>
+  <div class="profile-icon" *ngIf="isCustomerOrVendor" (click)="toggleMenu()">
+    <img src="https://i.postimg.cc/cJZXJt3F/Logo.png" alt="Profile Icon">
+    <app-navbar-menu [isMenuVisible]="isMenuVisible" 
+  (menuClosed)="closeMenu()">></app-navbar-menu>
+  </div>
+</nav>
