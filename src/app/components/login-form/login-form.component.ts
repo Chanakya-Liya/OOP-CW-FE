@@ -3,8 +3,10 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormsModule } from '@angular/forms';
 import { ReactiveFormsModule, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
 import { loginUser } from '../../models/loginUser.model';
+import { registerUser } from '../../models/registerUser.model';
 import { LoginServiceService } from '../../service/login-service.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 @Component({
   selector: 'app-login-form',
@@ -17,6 +19,7 @@ export class LoginFormComponent {
   signInForm: FormGroup;
   signUpForm: FormGroup;
   incorrect: boolean = false;
+  emailExist: boolean = false;
 
 
   passwordMatchValidator(): ValidatorFn {
@@ -53,7 +56,9 @@ export class LoginFormComponent {
 
     this.signUpForm = this.fb.group({
       username: ['', [Validators.required, Validators.minLength(3)]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(6), Validators.pattern('^(?=.*[0-9]).*$')]],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       confirmPassword: ['', [Validators.required, this.passwordMatchValidator()]],
       email: ['', [Validators.required, Validators.email]]
     });
@@ -63,28 +68,21 @@ export class LoginFormComponent {
     this.isSignIn = isSignInTab;
   }
 
+
   onSignInSubmit(): void {
     if (this.signInForm.valid) {
       const loginuser: loginUser = {
         email: this.signInForm.value.email,
-        password: this.signInForm.value.password
+        password: this.signInForm.value.password,
       };
-      this.loginService.getLogin( loginuser ).subscribe({
+      this.loginService.getLogin(loginuser).subscribe({
         next: (response) => {
           this.loginService.handleLoginResponse(response);
         },
         error: (error) => {
           console.log('Login failed', error);
           this.incorrect = true;
-          if (this.incorrect) {
-            setTimeout(() => {
-              this.incorrect = false;  
-            }, 4000);  
-          }
         },
-        complete: () => {
-          console.log('Login request completed');
-        }
       });
     } else {
       console.log('Sign In Form is invalid');
@@ -94,8 +92,28 @@ export class LoginFormComponent {
   onSignUpSubmit(): void {
     if (this.signUpForm.valid) {
       if (this.signUpForm.value.password === this.signUpForm.value.confirmPassword) {
-        console.log('Sign Up Data:', this.signUpForm.value);
-        // Add logic for sign-up process here
+        const registerUser : registerUser = {
+          email: this.signUpForm.value.email,
+          password: this.signUpForm.value.password,
+          username: this.signUpForm.value.username,
+          firstName: this.signUpForm.value.firstName,
+          lastName: this.signUpForm.value.lastName
+        };
+        console.log(registerUser);
+        this.loginService.getRegister(registerUser).subscribe({
+          next: (response) => {
+            console.log('Registration successful', response);
+            this.loginService.handleLoginResponse(response);
+          },
+          error: (error) => {
+            console.log('Registration failed', error);
+            if(error.status === 409){
+              console.log('Email already exists');
+              this.emailExist = true;
+            }
+          },
+        });
+
       } else {
         console.log('Passwords do not match');
       }
@@ -118,10 +136,20 @@ export class LoginFormComponent {
     return null;
   }
 
+  getNameError(name: string): string | null {
+    const userName = this.signUpForm.get(name);
+    if (userName?.hasError('required') && userName?.touched) {
+      return 'This Feild is Required';
+    }
+    return null;
+  }
+
   getPasswordError(form: FormGroup): string | null {
     const control = form.get('password');
     if (control?.hasError('minlength')) {
       return 'Password must be at least 6 characters long';
+    }if(control?.hasError('pattern')){
+      return 'Password must contain a number';
     }
     return null;
   }

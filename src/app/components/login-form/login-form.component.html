@@ -1,6 +1,6 @@
 <div 
   class="login-wrap" 
-  [ngStyle]="{ height: isSignIn ? '450px' : '680px' }" 
+  [ngStyle]="{ height: isSignIn ? '450px' : '780px' }" 
 >
   <div class="login-html">
     <input 
@@ -42,6 +42,17 @@
 			</div>
 			<div class="sign-up-htm">
 				<form [formGroup]="signUpForm" (ngSubmit)="onSignUpSubmit()">
+					<div *ngIf="emailExist" class="incorrect">Account With That Email Already Exists</div>
+					<div class="group">
+						<label for="user" class="label">First Name</label>
+						<input type="text" class="input" formControlName="firstName" [class.invalid]="getInvalid(signUpForm, 'firstName')">
+						<div class="error" *ngIf="getNameError('firstName')" class="error-message">{{ getNameError('firstName') }}</div>
+					</div>
+					<div class="group">
+						<label for="user" class="label">Last Name</label>
+						<input type="text" class="input" formControlName="lastName" [class.invalid]="getInvalid(signUpForm, 'lastName')">
+						<div class="error" *ngIf="getNameError('lastName')" class="error-message">{{ getNameError('lastName') }}</div>
+					</div>
 					<div class="group">
 						<label for="user" class="label">Username</label>
 						<input type="text" class="input" formControlName="username" [class.invalid]="getInvalid(signUpForm, 'username')">
