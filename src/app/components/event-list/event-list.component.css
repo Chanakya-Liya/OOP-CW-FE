@@ -1,0 +1,40 @@
+/* Styling for the loading text */
+.loading {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+    margin-top: 20px;
+  }
+
+  div{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  /* Styling for the 'no events available' text */
+  .no-events {
+    text-align: center;
+    font-size: 16px;
+    color: #777;
+    margin-top: 20px;
+  }
+  
+  .event-container {
+    gap: 10px; 
+}
+
+/* Individual event-card styling */
+.event-card {
+    flex: 1 1 calc(30% - 20px); /* Three cards per row with spacing */
+    margin: 10px;
+    box-sizing: border-box; /* Includes padding and border in width */
+}
+  
+  /* Responsive behavior */
+  @media (max-width: 768px) {
+    .event-container app-event-card {
+      flex: 1 1 100%; /* Full width on smaller screens */
+    }
+  }

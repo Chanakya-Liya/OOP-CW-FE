@@ -3,6 +3,5 @@ export type eventCustomer = {
     description: string;
     availableSeats: number;
     photo: string;  
-    vendorId: number;  
     eventDate: string;
 }
