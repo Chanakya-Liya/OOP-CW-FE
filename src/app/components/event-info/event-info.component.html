@@ -1,0 +1,16 @@
+<div class="event-detail">
+    <div class="background-image" [style.backgroundImage]="'url(' + getEventPhoto(event.photo) + ')'"></div>
+    <div class="content">
+        <h2>{{ event.name }}</h2>
+        <p>{{ event.description }}</p>
+        <div class="countdown">
+            <span>Till Event: </span>
+            <span>{{ countdown.days }}d</span>
+            <span>{{ countdown.hours }}h</span>
+            <span>{{ countdown.minutes }}m</span>
+            <span>{{ countdown.seconds }}s</span>
+        </div>
+        <p><strong>Seats Available:</strong> {{ availableSeats }}</p>
+        <button class="btn-buy-ticket" (click)="buyTicket()">Buy Ticket</button>
+    </div>
+</div>

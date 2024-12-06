@@ -3,6 +3,8 @@ import { Input } from '@angular/core';
 import { eventCustomer } from '../../models/event.model';
 import { DatePipe, NgIf } from '@angular/common';
 import { ImageServiceService } from '../../service/image-service.service';
+import { Router } from '@angular/router';
+import { query } from '@angular/animations';
 
 @Component({
   selector: 'app-event-card',
@@ -14,7 +16,7 @@ export class EventCardComponent implements OnInit {
 
   @Input() event!: eventCustomer;
 
-  constructor(private imageService: ImageServiceService) { }
+  constructor(private imageService: ImageServiceService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -24,5 +26,9 @@ export class EventCardComponent implements OnInit {
     const match = name.match(regex);
     const fileName: number | null = match ? parseInt(match[1], 10) : null;
     return "http://localhost:8030/photo/image?imageName=" + fileName;
+  }
+
+  viewEvent(event: eventCustomer) {
+    this.router.navigate(['/event'], { queryParams: event });
   }
 }

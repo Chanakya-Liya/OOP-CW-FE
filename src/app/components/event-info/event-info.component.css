@@ -1,0 +1,89 @@
+.event-detail {
+    position: relative;
+    margin: auto;
+    overflow: hidden; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.9); 
+    height: 92.9vh;
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    filter: blur(2px);
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.596); 
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 92.9vh;
+}
+
+.event-detail h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+
+.event-detail p {
+    font-size: 1.2rem;
+    color: black;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.2rem;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 2rem;
+}
+
+.countdown span {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.btn-buy-ticket {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #3498db;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-buy-ticket:hover {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+.btn-buy-ticket:active {
+    background-color: #1e6e9f;
+    transform: scale(1);
+}
