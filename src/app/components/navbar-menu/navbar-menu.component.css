@@ -1,0 +1,29 @@
+.profile-menu {
+    position: absolute;
+    top: 60px; /* Adjust based on your navbar height */
+    right: 20px; /* Aligns with the profile icon */
+    background-color: #1a1a1a; /* Matches navbar background */
+    border: 1px solid rgb(58, 134, 255, 0.95); /* Accent border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.profile-menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-menu li {
+    padding: 10px 15px;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.profile-menu li:hover {
+    background-color: rgb(58, 134, 255, 0.95); /* Accent hover background */
+    color: #000000; /* Dark text for contrast */
+}

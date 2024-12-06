@@ -1,21 +1,13 @@
 import { Component } from '@angular/core';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { NgxSpinner, NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
+import { EventListComponent } from '../../components/event-list/event-list.component';
 
 
 @Component({
   selector: 'app-customer',
-  imports: [MatProgressSpinnerModule, NgxSpinnerComponent],
+  imports: [EventListComponent],
   templateUrl: './customer.component.html',
   styleUrl: './customer.component.css'
 })
 export class CustomerComponent {
-  constructor(private spinner: NgxSpinnerService) { }
-
-  showSpinner() {
-    this.spinner.show();
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 5000);
-  }
+  constructor() { }
 }
