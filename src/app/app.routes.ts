@@ -18,7 +18,19 @@ export const routes: Routes = [
     {
       path: 'vendor',
       loadComponent: () =>
-        import('./pages/login/login.component').then((m) => m.LoginComponent),
+        import('./pages/vendor/vendor.component').then((m) => m.VendorComponent),
+      canActivate: [AuthGuard], // Protect the route
+    },
+    {
+      path: 'event',
+      loadComponent: () =>
+        import('./pages/events/events.component').then((m) => m.EventsComponent),
+      canActivate: [AuthGuard], // Protect the route
+    },
+    {
+      path: 'profile',
+      loadComponent: () =>
+        import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
       canActivate: [AuthGuard], // Protect the route
     },
     {

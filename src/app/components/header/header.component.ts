@@ -19,7 +19,7 @@ export class HeaderComponent {
   ngOnInit(): void {
     this.router.events.subscribe(() => {
       const currentRoute = this.router.url;
-      this.isCustomerOrVendor = currentRoute === '/customer' || currentRoute === '/vendor';
+      this.isCustomerOrVendor = currentRoute !== '/';
     });
   }
 
@@ -30,5 +30,13 @@ export class HeaderComponent {
 
   closeMenu(): void {
     this.isMenuVisible = false; // Close menu when child emits an event
+  }
+
+  redirect(){
+    if(localStorage.getItem('userRole') === 'Customer'){
+      this.router.navigate(['/customer']);
+    } else if(localStorage.getItem('userRole') === 'Vendor'){
+      this.router.navigate(['/vendor']);
+    }
   }
 }

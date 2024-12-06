@@ -7,6 +7,7 @@
     background-color: #1a1a1a; /* Deep dark background */
     border-bottom: 2px solid rgb(58, 134, 255, 0.95); /* Matches the button theme */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    z-index: 10;
 }
 
 .navbar-brand {
@@ -17,6 +18,7 @@
     color: #ffffff; /* Bright text for dark background */
     text-transform: uppercase;
     letter-spacing: 1.5px;
+    pointer-events: pointer;
 }
 
 .navbar-brand img {

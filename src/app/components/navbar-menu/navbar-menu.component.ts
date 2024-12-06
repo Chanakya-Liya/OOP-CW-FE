@@ -20,6 +20,11 @@ export class NavbarMenuComponent {
     this.router.navigate(['/settings']);
   }
 
+  goToProfile(): void {
+    this.menuClosed.emit();
+    this.router.navigate(['/profile']);
+  }
+
   logout(): void {
     this.menuClosed.emit(); 
     localStorage.removeItem('authToken');

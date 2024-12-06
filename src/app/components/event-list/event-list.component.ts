@@ -18,15 +18,16 @@ export class EventListComponent {
   constructor(private eventService: EventServiceService, private imageService: ImageServiceService) { }
 
   ngOnInit(): void {
-    this.loadEvents();
+    this.loadCustomerEvents();
   }
 
-  loadEvents(): void {
+  loadCustomerEvents(): void {
     console.log('Loading events...');
     this.eventService.getAllEvents().subscribe(
         (rawEvents) => {
             console.log('Raw Events:', rawEvents);
             this.events = rawEvents.map(event => ({
+                id: event.id,
                 name: event.name,
                 description: event.description,
                 availableSeats: event.availableSeats,
@@ -39,5 +40,9 @@ export class EventListComponent {
         }
     );
     this.loading = false
+}
+
+loadVendorEvents(): void {
+  
 }
 }
