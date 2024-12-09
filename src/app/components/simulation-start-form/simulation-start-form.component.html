@@ -1,0 +1,227 @@
+<div class="radio-inputs">
+    <label class="radio">
+      <input type="radio" name="radio" checked="" (change)="changeSimulationStatus(true)">
+      <span class="name">Simulation</span>
+    </label>
+    <label class="radio">
+      <input type="radio" name="radio" (change)="changeSimulationStatus(false)">
+      <span class="name">Thread Testings</span>
+    </label>
+  </div>
+
+
+    <form class="form" *ngIf="isSimulation" [formGroup]="simulationForm">
+      <div class="form-container">
+        <div class="form-section">
+          <h4>Events</h4>
+        <div class="flex-column">
+          <label>Event Count Min</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" pattern="\d{1,2}"  formControlName="eventCountMin" placeholder="Event Count Min">
+          </div>
+        
+        <div class="flex-column">
+          <label>Event Count Max</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="eventCountMax" placeholder="Event Count Max">
+          </div>
+    
+        <div class="flex-column">
+          <label>Pool Size Min</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="poolSizeMin" placeholder="Pool Size Min">
+          </div>
+    
+        <div class="flex-column">
+          <label>Pool Size Max</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="poolSizeMax" placeholder="Pool Size Max">
+          </div>
+    
+        <div class="flex-column">
+          <label>Total Event Tickets Min</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="totalEventTicketsMin" placeholder="Total Event Tickets Min">
+          </div>
+    
+        <div class="flex-column">
+          <label>Total Event Ticket Max</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="totalEventTicketsMax" placeholder="Total Event Tickets Max">
+          </div>
+    
+        <div class="flex-column">
+          <label>Event Creation Frequency Min</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="eventCreationFrequencyMin" placeholder="Event Creation Frequency Min">
+          </div>
+    
+        <div class="flex-column">
+          <label>Event Creation Frequency Max</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="eventCreationFrequencyMax" placeholder="Event Creation Frequency Max">
+          </div>
+        </div>
+    
+        <div class="form-section">
+          <h4>Customers</h4>
+        <div class="flex-column">
+          <label>Customer Count Min</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="customerCountMin" placeholder="Customer Count Min">
+          </div>
+        
+        <div class="flex-column">
+          <label>Customer Count Max</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="customerCountMax" placeholder="Customer Count Max">
+          </div>
+    
+        <div class="flex-column">
+          <label>Retrieval Rate Min</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="retrievalRateMin" placeholder="Retrieval Rate Min">
+          </div>
+    
+        <div class="flex-column">
+          <label>Retrieval Rate Max</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="retrievalRateMax" placeholder="Retrieval Rate Max">
+          </div>
+    
+        <div class="flex-column">
+          <label>Frequency Min</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="customerFrequencyMin" placeholder="Frequency Min">
+          </div>
+    
+        <div class="flex-column">
+          <label>Frequency Max</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="customerFrequencyMax" placeholder="Frequency Max">
+          </div>
+        </div>
+  
+        <div class="form-section">
+          <h4>Vendors</h4>
+        <div class="flex-column">
+          <label>Vendor Count Min</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="vendorCountMin" placeholder="Vendor Count Min">
+          </div>
+        
+        <div class="flex-column">
+          <label>Vendor Count Max</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="vendorCountMax" placeholder="Vendor Count Max">
+          </div>
+    
+        <div class="flex-column">
+          <label>Release Rate Min</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="releaseRateMin" placeholder="Release Rate Min">
+          </div>
+    
+        <div class="flex-column">
+          <label>Release Rate Max</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="releaseRateMax" placeholder="Release Rate Max">
+          </div>
+    
+        <div class="flex-column">
+          <label>Frequency Min</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="vendorFrequencyMin" placeholder="Frequency Min">
+          </div>
+    
+        <div class="flex-column">
+          <label>Frequency Max</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" formControlName="vendorFrequencyMax" placeholder="Frequency Max">
+          </div>
+        </div>
+      </div>
+      <div class="submit-button">
+        <button type="submit">Start Simulation</button>  
+      </div>
+    </form>
+    <form class="form" *ngIf="!isSimulation">
+      <div class="form-container">
+        <div class="form-section">
+          <h4>Events</h4>
+        
+          <div class="flex-column">
+            <label>Event Count</label></div>
+            <div class="inputForm">
+              <input type="number" class="input" placeholder="Event Count">
+            </div>
+    
+          <div class="flex-column">
+            <label>Pool Size</label></div>
+            <div class="inputForm">
+              <input type="number" class="input" placeholder="Pool Size">
+            </div>
+    
+          <div class="flex-column">
+            <label>Total Event Ticket </label></div>
+            <div class="inputForm">
+              <input type="number" class="input" placeholder="Total Event Tickets">
+            </div>
+    
+          <div class="flex-column">
+            <label>Event Creation Frequency</label></div>
+            <div class="inputForm">
+              <input type="number" class="input" placeholder="Event Creation Frequency">
+            </div>
+        </div>
+    
+        <div class="form-section">
+          <h4>Customers</h4>
+  
+        
+        <div class="flex-column">
+          <label>Customer Count</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" placeholder="Customer Count">
+          </div>
+    
+        <div class="flex-column">
+          <label>Retrieval Rate</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" placeholder="Retrieval Rate">
+          </div>
+    
+        <div class="flex-column">
+          <label>Frequency</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" placeholder="Frequency">
+          </div>
+        </div>
+  
+        <div class="form-section">
+          <h4>Vendors</h4>
+        
+        <div class="flex-column">
+          <label>Vendor Count</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" placeholder="Vendor Count">
+          </div>
+    
+        <div class="flex-column">
+          <label>Release Rate</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" placeholder="Release Rate">
+          </div>
+    
+        <div class="flex-column">
+          <label>Frequency</label></div>
+          <div class="inputForm">
+            <input type="number" class="input" placeholder="Frequency">
+          </div>
+        </div>
+      </div>
+      <div class="submit-button">
+        <button type="submit">Start Simulation</button>  
+      </div>
+    </form>
+  

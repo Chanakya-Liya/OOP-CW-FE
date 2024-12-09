@@ -22,6 +22,12 @@ export const routes: Routes = [
       canActivate: [AuthGuard], // Protect the route
     },
     {
+      path: 'admin',
+      loadComponent: () =>
+        import('./pages/admin/admin.component').then((m) => m.AdminComponent),
+      canActivate: [AuthGuard], // Protect the route
+    },
+    {
       path: 'event',
       loadComponent: () =>
         import('./pages/events/events.component').then((m) => m.EventsComponent),

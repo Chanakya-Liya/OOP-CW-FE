@@ -21,6 +21,7 @@ export class LoginServiceService {
     }
 
     handleLoginResponse(response: any): void {
+      debugger
       const responseObj = JSON.parse(response); // Parse the JSON response
       const role = responseObj.role;
       const token = responseObj.token;
@@ -36,6 +37,8 @@ export class LoginServiceService {
           this.router.navigate(['/customer']);
         } else if (role === 'Vendor') {
           this.router.navigate(['/vendor']);
+        }else if (role === 'Admin') {
+          this.router.navigate(['/admin']);
         }
       } else {
         this.router.navigate(['']); // Invalid response, redirect to login
