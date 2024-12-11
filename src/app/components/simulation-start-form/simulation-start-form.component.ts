@@ -252,7 +252,7 @@ export function minMaxValidator(minControlName: string): ValidatorFn {
     const max = parseFloat(control.value);
 
     if (!isNaN(min) && !isNaN(max) && min > max) {
-      return { minMaxMismatch: true }; // Error key
+      return { minMaxMismatch: true }; 
     }
 
     return null;

@@ -10,8 +10,8 @@ import { NgIf } from '@angular/common';
   styleUrl: './navbar-menu.component.css'
 })
 export class NavbarMenuComponent {
-  @Input() isMenuVisible: boolean = false; // Parent controls visibility
-  @Output() menuClosed = new EventEmitter<void>(); // Notify parent when menu actions are triggered
+  @Input() isMenuVisible: boolean = false; 
+  @Output() menuClosed = new EventEmitter<void>(); 
 
   constructor(private router: Router) {}
 

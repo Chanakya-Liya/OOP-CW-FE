@@ -31,7 +31,7 @@ a {
     box-shadow: 0 12px 15px 0 rgba(0, 0, 0, .24), 0 17px 50px 0 rgba(0, 0, 0, .19);
     border-radius: 15px;
     overflow: hidden;
-    transition: height 0.4s ease; /* Smooth transition */
+    transition: height 0.4s ease; 
   }
 
 
@@ -75,13 +75,13 @@ a {
     margin: 0 15px 10px 0;
     display: inline-block;
     border-bottom: 2px solid transparent;
-    color: #FFC300; /* Golden Yellow */
+    color: #FFC300;
     cursor: pointer;
 }
 
 .login-html .sign-in:checked + .tab,
 .login-html .sign-up:checked + .tab {
-    color: #66D9A0; /* Mint Green */
+    color: #66D9A0; 
     border-color: #66D9A0;
 }
 
@@ -130,7 +130,7 @@ a {
 }
 
 .login-form .group .button {
-    background: linear-gradient(90deg, #FF4D6D, #FFC300); /* Sunset Orange to Golden Yellow */
+    background: linear-gradient(90deg, #FF4D6D, #FFC300); 
     cursor: pointer;
     transition: all 0.3s ease;
     margin-top: 30px;
@@ -141,7 +141,7 @@ form{
 }
 
 .login-form .group .button:hover {
-    background: #66D9A0; /* Mint Green */
+    background: #66D9A0; 
 }
 
 .login-form .group label .icon {
@@ -181,7 +181,7 @@ form{
 }
 
 .login-form .group .check:checked + label .icon {
-    background: #FFC300; /* Golden Yellow */
+    background: #FFC300; 
 }
 
 .login-form .group .check:checked + label .icon:before {
@@ -208,5 +208,5 @@ form{
 
 .foot-lnk {
     text-align: center;
-    color: #FFC300; /* Golden Yellow */
+    color: #FFC300; 
 }
