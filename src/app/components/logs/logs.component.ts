@@ -1,4 +1,5 @@
 import { NgFor, NgIf } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { NgModel } from '@angular/forms';
 
@@ -9,13 +10,37 @@ import { NgModel } from '@angular/forms';
   styleUrl: './logs.component.css'
 })
 export class LogsComponent {
-  selectedLogType: string = 'vendor'
+  selectedLogType: string = 'event'
+  logs: string[] = [];
+  private eventSource: EventSource | null = null;
+
+  constructor(private http: HttpClient){}
 
   changeSelectedLogType(logType: string) {
     this.selectedLogType = logType;
+    this.fetchLogs();
   }
 
-  vendorLogs: string[] = ['Vendor log 1', 'Vendor log 2', 'Vendor log 3','Vendor log 1', 'Vendor log 2', 'Vendor log 3','Vendor log 1', 'Vendor log 2', 'Vendor log 3','Vendor log 1', 'Vendor log 2', 'Vendor log 3'];
-  customerLogs: string[] = ['Customer log 1', 'Customer log 2', 'Customer log 3'];
-  eventLogs: string[] = ['Event log 1', 'Event log 2', 'Event log 3'];
+  fetchLogs(): void {
+    // Close the existing EventSource if any
+    if (this.eventSource) {
+      this.eventSource.close();
+      this.eventSource = null;
+    }
+
+    this.logs = []; // Clear previous logs
+
+    // Create a new EventSource for the selected log type
+    this.eventSource = new EventSource(`http://localhost:8030/logs/${this.selectedLogType}`);
+    this.eventSource.onmessage = (event) => {
+      this.logs.push(event.data);
+    };
+    this.eventSource.onerror = (error) => {
+      console.error('Error fetching logs:', error);
+      this.eventSource?.close(); // Ensure the EventSource is closed on error
+      this.eventSource = null;
+    };
+  }
+
+  
 }

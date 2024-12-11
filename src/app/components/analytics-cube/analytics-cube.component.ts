@@ -16,6 +16,7 @@ export class AnalyticsCubeComponent implements OnInit {
   vendors: number = 0;
   events: number = 0;
   ticketsSold: number = 0;
+  ticketsavailable: number = 0;
 
   constructor(private customerService: CustomerServiceService, private eventService: EventServiceService, private vendorService: VendorServiceService, private ticketService: TicketServiceService) {}
 
@@ -39,6 +40,10 @@ export class AnalyticsCubeComponent implements OnInit {
 
       this.ticketService.getSoldTicketCount().subscribe(data => {
         this.ticketsSold = data;
+      });
+
+      this.ticketService.getAvailableCount().subscribe(data => {
+        this.ticketsavailable = data;
       });
     }, 1000)
     
