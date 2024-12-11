@@ -19,7 +19,7 @@ export class EventInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      this.event = params; // Contains event details
+      this.event = params; 
     });
     this.startCountdown(new Date(this.event.eventDate));
     this.startTicketCountUpdate();

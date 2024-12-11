@@ -14,7 +14,7 @@ export class CustomerServiceService {
     getCustomerCount(): Observable<number> {
       this.http.get<number>(this.apiUrl + '/count').subscribe(data => {
       }, error => {
-        console.error('Error fetching events:', error); // Logs any errors
+        console.error('Error fetching events:', error); 
       });
       return this.http.get<number>(this.apiUrl + '/count');
     }

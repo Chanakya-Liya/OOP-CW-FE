@@ -40,7 +40,7 @@ export class LoginServiceService {
           this.router.navigate(['/admin']);
         }
       } else {
-        this.router.navigate(['']); // Invalid response, redirect to login
+        this.router.navigate(['']);
       }
     }
 }

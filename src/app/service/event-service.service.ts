@@ -14,9 +14,9 @@ export class EventServiceService {
 
     getAllEvents(): Observable<eventCustomer[]> {
       this.http.get<eventCustomer[]>(this.apiUrl + '/all').subscribe(data => {
-        console.log(data); // Logs the fetched data
+        console.log(data); 
       }, error => {
-        console.error('Error fetching events:', error); // Logs any errors
+        console.error('Error fetching events:', error); 
       });
       return this.http.get<eventCustomer[]>(this.apiUrl + '/all');
     }
@@ -45,7 +45,7 @@ export class EventServiceService {
     getEventCount(): Observable<number> {
       this.http.get<number>(this.apiUrl + '/count').subscribe(data => {
       }, error => {
-        console.error('Error fetching events:', error); // Logs any errors
+        console.error('Error fetching events:', error); 
       });
       return this.http.get<number>(this.apiUrl + '/count');
     }
