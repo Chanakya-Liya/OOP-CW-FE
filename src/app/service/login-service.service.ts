@@ -36,6 +36,8 @@ export class LoginServiceService {
           this.router.navigate(['/customer']);
         } else if (role === 'Vendor') {
           this.router.navigate(['/vendor']);
+        }else if (role === 'Admin') {
+          this.router.navigate(['/admin']);
         }
       } else {
         this.router.navigate(['']); // Invalid response, redirect to login

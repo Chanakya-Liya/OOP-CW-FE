@@ -1,0 +1,52 @@
+<div class="radio-inputs">
+    <label class="radio">
+      <input
+        type="radio"
+        name="radio"
+        (click)="changeSelectedLogType('vendor')"
+        value="vendor"
+        checked
+      />
+      <span class="name">Vendor Logs</span>
+    </label>
+    <label class="radio">
+      <input
+        type="radio"
+        name="radio"
+        (click)="changeSelectedLogType('customer')"
+        value="customer"
+      />
+      <span class="name">Customer Logs</span>
+    </label>
+    <label class="radio">
+      <input
+        type="radio"
+        name="radio"
+        (click)="changeSelectedLogType('event')"
+        value="event"
+      />
+      <span class="name">Event Creation Logs</span>
+    </label>
+  </div>
+  
+  <div class="logs-container" *ngIf="selectedLogType === 'vendor'" class="logs-section">
+    <h1>Vendor Logs</h1>
+    <ul>
+      <li *ngFor="let log of vendorLogs">{{ log }}</li>
+    </ul>
+  </div>
+  
+  <div class="logs" *ngIf="selectedLogType === 'customer'" class="logs-section">
+    <h1>Customer Logs</h1>
+    <ul>
+      <li *ngFor="let log of customerLogs">{{ log }}</li>
+    </ul>
+  </div>
+  
+  <div class="logs" *ngIf="selectedLogType === 'event'" class="logs-section">
+    <h1>Event Creation Logs</h1>
+    <ul>
+      <li *ngFor="let log of eventLogs">{{ log }}</li>
+    </ul>
+  </div>
+  

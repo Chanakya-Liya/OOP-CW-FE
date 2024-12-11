@@ -31,7 +31,7 @@ export class LoginFormComponent {
       if (password && confirmPassword && password.value !== confirmPassword.value) {
         return { passwordMismatch: true };  
       }
-      return null;  // Return null if passwords match
+      return null;
     };
   }
 

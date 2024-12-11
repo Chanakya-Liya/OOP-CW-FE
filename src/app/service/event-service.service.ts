@@ -41,4 +41,12 @@ export class EventServiceService {
           }
         );
     }
+
+    getEventCount(): Observable<number> {
+      this.http.get<number>(this.apiUrl + '/count').subscribe(data => {
+      }, error => {
+        console.error('Error fetching events:', error); // Logs any errors
+      });
+      return this.http.get<number>(this.apiUrl + '/count');
+    }
 }
