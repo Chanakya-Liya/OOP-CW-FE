@@ -20,20 +20,7 @@ export class AnalyticsCubeComponent implements OnInit {
   constructor(private customerService: CustomerServiceService, private eventService: EventServiceService, private vendorService: VendorServiceService, private ticketService: TicketServiceService) {}
 
   ngOnInit() {
-
     this.getCounts();
-
-    // this.customerService.getVendorCount().subscribe(data => {
-    //   this.vendors = data;
-    // });
-
-    // this.customerService.getEventCount().subscribe(data => {
-    //   this.events = data;
-    // });
-
-    // this.customerService.getTicketsSold().subscribe(data => {
-    //   this.ticketsSold = data;
-    // });
   }
 
   getCounts(): void {

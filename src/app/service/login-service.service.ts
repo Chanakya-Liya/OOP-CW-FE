@@ -21,7 +21,6 @@ export class LoginServiceService {
     }
 
     handleLoginResponse(response: any): void {
-      debugger
       const responseObj = JSON.parse(response); // Parse the JSON response
       const role = responseObj.role;
       const token = responseObj.token;

@@ -10,56 +10,89 @@
   </div>
 
 
-    <form class="form" *ngIf="isSimulation" [formGroup]="simulationForm">
+    <form class="form" *ngIf="isSimulation" [formGroup]="simulationForm" (ngSubmit)="onSubmit()">
       <div class="form-container">
         <div class="form-section">
           <h4>Events</h4>
         <div class="flex-column">
           <label>Event Count Min</label></div>
           <div class="inputForm">
-            <input type="number" class="input" pattern="\d{1,2}"  formControlName="eventCountMin" placeholder="Event Count Min">
+            <input type="number" class="input" max="30" min="0" formControlName="EventCountMin" placeholder="Event Count Min">
+          </div>
+          <div *ngIf="getError(simulationForm, 'EventCountMin', 'min')">
+            Value must be at least 0.
           </div>
         
         <div class="flex-column">
           <label>Event Count Max</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="eventCountMax" placeholder="Event Count Max">
+            <input type="number" class="input" formControlName="EventCountMax" placeholder="Event Count Max">
+          </div>
+          <div *ngIf="getError(simulationForm, 'EventCountMax', 'max')">
+            Value must be less than 30.
+          </div>  
+          <div *ngIf="getMisMatchError(simulationForm, 'EventCountMax')">
+            Value needs to be more than the min value.
           </div>
     
         <div class="flex-column">
           <label>Pool Size Min</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="poolSizeMin" placeholder="Pool Size Min">
+            <input type="number" class="input" formControlName="PoolSizeMin" placeholder="Pool Size Min">
           </div>
+          <div *ngIf="getError(simulationForm, 'PoolSizeMin', 'min')">
+            Value must be less than 30.
+          </div>  
     
         <div class="flex-column">
           <label>Pool Size Max</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="poolSizeMax" placeholder="Pool Size Max">
+            <input type="number" class="input" formControlName="PoolSizeMax" placeholder="Pool Size Max">
+          </div>
+          <div *ngIf="getError(simulationForm, 'PoolSizeMax', 'max')">
+            Value must be less than 700
+          </div>
+          <div *ngIf="getMisMatchError(simulationForm, 'PoolSizeMax')">
+            Value needs to be more than the min value.
           </div>
     
         <div class="flex-column">
           <label>Total Event Tickets Min</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="totalEventTicketsMin" placeholder="Total Event Tickets Min">
+            <input type="number" class="input" formControlName="TotalEventTicketsMin" placeholder="Total Event Tickets Min">
+          </div>
+          <div *ngIf="getError(simulationForm, 'TotalEventTicketsMin', 'min')">
+            Value must be at least 0.
           </div>
     
         <div class="flex-column">
           <label>Total Event Ticket Max</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="totalEventTicketsMax" placeholder="Total Event Tickets Max">
+            <input type="number" class="input" formControlName="TotalEventTicketsMax" placeholder="Total Event Tickets Max">
+          </div>
+          <div *ngIf="getError(simulationForm, 'TotalEventTicketsMax', 'max')">
+            Value must be less than 5000
+          </div>
+          <div *ngIf="getMisMatchError(simulationForm, 'TotalEventTicketsMax')">
+            Value needs to be more than the min value.
           </div>
     
         <div class="flex-column">
           <label>Event Creation Frequency Min</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="eventCreationFrequencyMin" placeholder="Event Creation Frequency Min">
+            <input type="number" class="input" formControlName="EventCreationFrequencyMin" placeholder="Event Creation Frequency Min">
+          </div>
+          <div *ngIf="getError(simulationForm, 'EventCreationFrequencyMin', 'min')">
+            Value must be at least 0.
           </div>
     
         <div class="flex-column">
           <label>Event Creation Frequency Max</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="eventCreationFrequencyMax" placeholder="Event Creation Frequency Max">
+            <input type="number" class="input" formControlName="EventCreationFrequencyMax" placeholder="Event Creation Frequency Max">
+          </div>
+          <div *ngIf="getMisMatchError(simulationForm, 'EventCreationFrequencyMax')">
+            Value needs to be more than the min value.
           </div>
         </div>
     
@@ -68,37 +101,61 @@
         <div class="flex-column">
           <label>Customer Count Min</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="customerCountMin" placeholder="Customer Count Min">
+            <input type="number" class="input" formControlName="CustomerCountMin" placeholder="Customer Count Min">
+          </div>
+          <div *ngIf="getError(simulationForm, 'CustomerCountMin', 'min')">
+             Value must be at least 0
           </div>
         
         <div class="flex-column">
           <label>Customer Count Max</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="customerCountMax" placeholder="Customer Count Max">
+            <input type="number" class="input" formControlName="CustomerCountMax" placeholder="Customer Count Max">
+          </div>
+          <div *ngIf="getError(simulationForm, 'CustomerCountMax', 'max')">
+            Value must be less than 500.
+          </div>
+          <div *ngIf="getMisMatchError(simulationForm, 'CustomerCountMax')">
+            Value needs to be more than the min value.
           </div>
     
         <div class="flex-column">
           <label>Retrieval Rate Min</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="retrievalRateMin" placeholder="Retrieval Rate Min">
+            <input type="number" class="input" formControlName="RetrievalRateMin" placeholder="Retrieval Rate Min">
+          </div>
+          <div *ngIf="getError(simulationForm, 'CustomerCountMin', 'min')">
+            Value must be at least 0.
           </div>
     
         <div class="flex-column">
           <label>Retrieval Rate Max</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="retrievalRateMax" placeholder="Retrieval Rate Max">
+            <input type="number" class="input" formControlName="RetrievalRateMax" placeholder="Retrieval Rate Max">
+          </div>
+          <div *ngIf="getError(simulationForm, 'RetrievalRateMax', 'max')">
+            Value must be less than 50.
+          </div>
+          <div *ngIf="getMisMatchError(simulationForm, 'RetrievalRateMax')">
+            Value needs to be more than the min value.
           </div>
     
         <div class="flex-column">
           <label>Frequency Min</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="customerFrequencyMin" placeholder="Frequency Min">
+            <input type="number" class="input" formControlName="CustomerFrequencyMin" placeholder="Frequency Min">
+          </div>
+          <div *ngIf="getError(simulationForm, 'CustomerFrequencyMin', 'min')">
+            Value must be at least 0.
           </div>
     
         <div class="flex-column">
           <label>Frequency Max</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="customerFrequencyMax" placeholder="Frequency Max">
+            <input type="number" class="input" formControlName="CustomerFrequencyMax" placeholder="Frequency Max">
+          </div>
+          <div *ngIf="getMisMatchError(simulationForm, 'CustomerFrequencyMax')">
+            Value needs to be more than the min value.
           </div>
         </div>
   
@@ -107,45 +164,70 @@
         <div class="flex-column">
           <label>Vendor Count Min</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="vendorCountMin" placeholder="Vendor Count Min">
+            <input type="number" class="input" formControlName="VendorCountMin" placeholder="Vendor Count Min">
+          </div>
+          <div *ngIf="getError(simulationForm, 'VendorCountMin', 'min')">
+            Value must be at least 0.
           </div>
         
         <div class="flex-column">
           <label>Vendor Count Max</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="vendorCountMax" placeholder="Vendor Count Max">
+            <input type="number" class="input" formControlName="VendorCountMax" placeholder="Vendor Count Max">
+          </div>
+          <div *ngIf="getError(simulationForm, 'VendorCountMax', 'max')">
+            Value must be less than 60.
+          </div>
+          <div *ngIf="getMisMatchError(simulationForm, 'VendorCountMax')">
+            Value needs to be more than the min value.
           </div>
     
         <div class="flex-column">
           <label>Release Rate Min</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="releaseRateMin" placeholder="Release Rate Min">
+            <input type="number" class="input" formControlName="ReleaseRateMin" placeholder="Release Rate Min">
+          </div>
+          <div *ngIf="getError(simulationForm, 'ReleaseRateMin', 'min')">
+            Value must be at least 0.
           </div>
     
         <div class="flex-column">
           <label>Release Rate Max</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="releaseRateMax" placeholder="Release Rate Max">
+            <input type="number" class="input" formControlName="ReleaseRateMax" placeholder="Release Rate Max">
+          </div>
+          <div *ngIf="getError(simulationForm, 'ReleaseRateMax', 'max')">
+            Value must be less than 250.
+          </div>
+          <div *ngIf="getMisMatchError(simulationForm, 'ReleaseRateMax')">
+            Value needs to be more than the min value.
           </div>
     
         <div class="flex-column">
           <label>Frequency Min</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="vendorFrequencyMin" placeholder="Frequency Min">
+            <input type="number" class="input" formControlName="VendorFrequencyMin" placeholder="Frequency Min">
+          </div>
+          <div *ngIf="getError(simulationForm, 'VendorFrequencyMin', 'min')">
+            Value must be at least 0.
           </div>
     
         <div class="flex-column">
           <label>Frequency Max</label></div>
           <div class="inputForm">
-            <input type="number" class="input" formControlName="vendorFrequencyMax" placeholder="Frequency Max">
+            <input type="number" class="input" formControlName="VendorFrequencyMax" placeholder="Frequency Max">
           </div>
+          <div *ngIf="getMisMatchError(simulationForm, 'VendorFrequencyMax')">
+            Value needs to be more than the min value.
+            </div>
         </div>
       </div>
       <div class="submit-button">
         <button type="submit">Start Simulation</button>  
       </div>
     </form>
-    <form class="form" *ngIf="!isSimulation">
+
+    <form class="form" [formGroup]="threadTestingForm" *ngIf="!isSimulation" (ngSubmit)="onSubmit()">
       <div class="form-container">
         <div class="form-section">
           <h4>Events</h4>
@@ -153,70 +235,88 @@
           <div class="flex-column">
             <label>Event Count</label></div>
             <div class="inputForm">
-              <input type="number" class="input" placeholder="Event Count">
+              <input type="number" class="input" formControlName="EventCount" placeholder="Event Count">
+            </div>
+            <div *ngIf="getError(threadTestingForm, 'EventCount', 'max')">
+              Value must be less than 30.
             </div>
     
           <div class="flex-column">
             <label>Pool Size</label></div>
             <div class="inputForm">
-              <input type="number" class="input" placeholder="Pool Size">
+              <input type="number" class="input" formControlName="PoolSize" placeholder="Pool Size">
+            </div>
+            <div *ngIf="getError(threadTestingForm, 'PoolSize', 'max')">
+              Value must be less than 700.
             </div>
     
           <div class="flex-column">
             <label>Total Event Ticket </label></div>
             <div class="inputForm">
-              <input type="number" class="input" placeholder="Total Event Tickets">
+              <input type="number" class="input" formControlName="TotalEventTickets" placeholder="Total Event Tickets">
+            </div>
+            <div *ngIf="getError(threadTestingForm, 'TotalEventTickets', 'max')">
+              Value must be less than 5000.
             </div>
     
           <div class="flex-column">
             <label>Event Creation Frequency</label></div>
             <div class="inputForm">
-              <input type="number" class="input" placeholder="Event Creation Frequency">
+              <input type="number" class="input" formControlName="EventCreationFrequency" placeholder="Event Creation Frequency">
             </div>
         </div>
     
         <div class="form-section">
           <h4>Customers</h4>
-  
-        
         <div class="flex-column">
           <label>Customer Count</label></div>
           <div class="inputForm">
-            <input type="number" class="input" placeholder="Customer Count">
+            <input type="number" class="input" formControlName="CustomerCount" placeholder="Customer Count">
+          </div>
+          <div *ngIf="getError(threadTestingForm, 'CustomerCount', 'max')">
+            Value must be less than 500.
           </div>
     
         <div class="flex-column">
           <label>Retrieval Rate</label></div>
           <div class="inputForm">
-            <input type="number" class="input" placeholder="Retrieval Rate">
+            <input type="number" class="input" formControlName="RetrievalRate" placeholder="Retrieval Rate">
+          </div>
+          <div *ngIf="getError(threadTestingForm, 'RetrievalRate', 'max')">
+            Value must be less than 50.
           </div>
     
         <div class="flex-column">
           <label>Frequency</label></div>
           <div class="inputForm">
-            <input type="number" class="input" placeholder="Frequency">
+            <input type="number" class="input" formControlName="CustomerFrequency" placeholder="Frequency">
           </div>
         </div>
   
         <div class="form-section">
-          <h4>Vendors</h4>
-        
+          <h4>Vendors</h4>        
         <div class="flex-column">
           <label>Vendor Count</label></div>
           <div class="inputForm">
-            <input type="number" class="input" placeholder="Vendor Count">
+            <input type="number" class="input" formControlName="VendorCount" placeholder="Vendor Count">
+          </div>
+          <div *ngIf="getError(threadTestingForm, 'VendorCount', 'max')">
+            Value must be less than 60.
           </div>
     
         <div class="flex-column">
           <label>Release Rate</label></div>
           <div class="inputForm">
-            <input type="number" class="input" placeholder="Release Rate">
+            <input type="number" class="input" formControlName="ReleaseRate" placeholder="Release Rate">
+          </div>
+          <div *ngIf="getError(threadTestingForm, 'ReleaseRate', 'max')">
+            Value must be less than 250.
           </div>
     
         <div class="flex-column">
           <label>Frequency</label></div>
           <div class="inputForm">
-            <input type="number" class="input" placeholder="Frequency">
+            <input type="number" class="input" formControlName="VendorFrequency" placeholder="Frequency">
           </div>
         </div>
       </div>

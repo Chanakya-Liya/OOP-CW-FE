@@ -12,7 +12,6 @@ export class TicketServiceService {
 
     getSoldTicketCount(): Observable<number> {
       this.http.get<number>(this.apiUrl + '/sold/count').subscribe(data => {
-        console.log(data); // Logs the fetched data
       }, error => {
         console.error('Error fetching events:', error); // Logs any errors
       });
