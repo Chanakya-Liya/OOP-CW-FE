@@ -42,7 +42,5 @@ export class EventListComponent {
     this.loading = false
 }
 
-loadVendorEvents(): void {
-  
-}
+loadVendorEvents(): void { }
 }

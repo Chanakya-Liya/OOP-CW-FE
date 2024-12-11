@@ -17,4 +17,12 @@ export class TicketServiceService {
       });
       return this.http.get<number>(this.apiUrl + '/sold/count');
     }
+
+    getAvailableCount(): Observable<number> {
+      this.http.get<number>(this.apiUrl + '/available/count').subscribe(data => {
+      }, error => {
+        console.error('Error fetching events:', error); // Logs any errors
+      });
+      return this.http.get<number>(this.apiUrl + '/available/count');
+    }
 }
