@@ -24,23 +24,25 @@ export class EventListComponent {
   loadCustomerEvents(): void {
     console.log('Loading events...');
     this.eventService.getAllEvents().subscribe(
-        (rawEvents) => {
-            console.log('Raw Events:', rawEvents);
-            this.events = rawEvents.map(event => ({
-                id: event.id,
-                name: event.name,
-                description: event.description,
-                availableSeats: event.availableSeats,
-                photo: event.photo,
-                eventDate: event.eventDate,
-            }));
-        },
-        (error) => {
-            console.error('Error loading events:', error);
-        }
+      (rawEvents) => {
+        console.log('Raw Events:', rawEvents);
+        this.events = rawEvents
+          .filter(event => new Date(event.eventDate) > new Date())
+          .map(event => ({
+            id: event.id,
+            name: event.name,
+            description: event.description,
+            availableSeats: event.availableSeats,
+            photo: event.photo,
+            eventDate: event.eventDate,
+          }));
+      },
+      (error) => {
+        console.error('Error loading events:', error);
+      }
     );
-    this.loading = false
-}
+    this.loading = false;
+  }
 
 loadVendorEvents(): void { }
 }
